@@ -20,7 +20,7 @@ package uk.ac.ox.softeng.maurodatamapper.plugins
 
 import grails.plugins.Plugin
 
-class MdmPluginTemplateGrailsPlugin extends Plugin {
+class MdmPluginDitaGrailsPlugin extends Plugin {
 
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "4.0.6 > *"
@@ -30,16 +30,16 @@ class MdmPluginTemplateGrailsPlugin extends Plugin {
     ]
 
     // TODO Fill in these fields
-    def title = "Rest Api Plugin"
+    def title = "DITA Plugin"
     // Headline display name of the plugin
-    def author = "Your name"
-    def authorEmail = ""
+    def author = "James Welch"
+    def authorEmail = "james.welch@bdi.ox.ac.uk"
     def description = '''\
-Brief summary/description of the plugin.
+DITA tooling for Mauro Data Mapper.  Makes use of the DITA DSL defined in the Mauro organisation
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/rest-api-plugin"
+    // def documentation = "http://grails.org/plugin/rest-api-plugin"
 
     // Extra (optional) plugin metadata
 

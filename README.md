@@ -1,26 +1,9 @@
-# mdm-plugin-template
-
-## How to use
-
-* Clone this repository to a new folder
-
-```bash
-$ git clone git@github.com:MauroDataMapper-Plugins/mdm-plugin-template.git mdm-plugin-NAME_OF_PLUGIN
-```
-
-* Remove this section of the README and update `NAME_OF_PLUGIN` in the markdown template below
-* Set `rootProject.name` in `settings.gradle` to `mdm-plugin-NAME_OF_PLUGIN`
-
-TODO write about grails plugins
-
-### Markdown Template
-
-# mdm-plugin-NAME_OF_PLUGIN
+# mdm-plugin-dita
 
 | Branch | Build Status |
 | ------ | ------------ |
-| master | [![Build Status](https://jenkins.cs.ox.ac.uk/buildStatus/icon?job=Mauro+Data+Mapper+Plugins%2Fmdm-plugin-NAME_OF_PLUGIN%2Fmain)](https://jenkins.cs.ox.ac.uk/blue/organizations/jenkins/Mauro%20Data%20Mapper%20Plugins%2Fmdm-plugin-NAME_OF_PLUGIN/branches) |
-| develop | [![Build Status](https://jenkins.cs.ox.ac.uk/buildStatus/icon?job=Mauro+Data+Mapper+Plugins%2Fmdm-plugin-NAME_OF_PLUGIN%2Fdevelop)](https://jenkins.cs.ox.ac.uk/blue/organizations/jenkins/Mauro%20Data%20Mapper%20Plugins%2Fmdm-plugin-NAME_OF_PLUGIN/branches) |
+| master | [![Build Status](https://jenkins.cs.ox.ac.uk/buildStatus/icon?job=Mauro+Data+Mapper+Plugins%2Fmdm-plugin-dita%2Fmain)](https://jenkins.cs.ox.ac.uk/blue/organizations/jenkins/Mauro%20Data%20Mapper%20Plugins%2Fmdm-plugin-dita/branches) |
+| develop | [![Build Status](https://jenkins.cs.ox.ac.uk/buildStatus/icon?job=Mauro+Data+Mapper+Plugins%2Fmdm-plugin-dita%2Fdevelop)](https://jenkins.cs.ox.ac.uk/blue/organizations/jenkins/Mauro%20Data%20Mapper%20Plugins%2Fmdm-plugin-dita/branches) |
 
 ## Requirements
 
@@ -43,7 +26,7 @@ In the `docker-compose.yml` file add:
 mauro-data-mapper:
     build:
         args:
-            ADDITIONAL_PLUGINS: "uk.ac.ox.softeng.maurodatamapper.plugins:mdm-plugin-NAME_OF_PLUGIN:1.0.0-SNAPSHOT"
+            ADDITIONAL_PLUGINS: "uk.ac.ox.softeng.maurodatamapper.plugins:mdm-plugin-dita:1.0.0-SNAPSHOT"
 ```
 
 Please note, if adding more than one plugin, this is a semicolon-separated list
@@ -55,7 +38,7 @@ In the `build.gradle` file add:
 ```groovy
 grails {
     plugins {
-        runtimeOnly 'uk.ac.ox.softeng.maurodatamapper.plugins:mdm-plugin-NAME_OF_PLUGIN:1.0.0-SNAPSHOT'
+        runtimeOnly 'uk.ac.ox.softeng.maurodatamapper.plugins:mdm-plugin-dita:1.0.0-SNAPSHOT'
     }
 }
 ```
