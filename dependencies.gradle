@@ -11,7 +11,7 @@ dependencies {
 
     implementation group: 'uk.ac.ox.softeng.maurodatamapper', name: 'dita-dsl', version: '1.0.0-SNAPSHOT'
 
-    implementation group: 'org.dita-ot', name:'dost', version: '3.6.1'
+    implementation group: 'org.dita-ot', name:'dost', version: '3.7.1'
     implementation group: 'org.apache.xmlgraphics', name: 'fop', version: '2.3'
     implementation group: 'org.apache.avalon.framework', name: 'avalon-framework-api', version: '4.3.1'
     implementation group: 'org.apache.avalon.framework', name: 'avalon-framework-impl', version: '4.3.1'
