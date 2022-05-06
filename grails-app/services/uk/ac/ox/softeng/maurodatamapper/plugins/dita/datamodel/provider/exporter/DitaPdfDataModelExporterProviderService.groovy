@@ -23,9 +23,9 @@ import uk.ac.ox.softeng.maurodatamapper.datamodel.DataModel
 import uk.ac.ox.softeng.maurodatamapper.datamodel.item.DataClassService
 import uk.ac.ox.softeng.maurodatamapper.datamodel.item.DataElementService
 import uk.ac.ox.softeng.maurodatamapper.datamodel.provider.exporter.DataModelExporterProviderService
-import uk.ac.ox.softeng.maurodatamapper.dita.ShortDesc
-import uk.ac.ox.softeng.maurodatamapper.dita.Title
-import uk.ac.ox.softeng.maurodatamapper.dita.Topic
+import uk.ac.ox.softeng.maurodatamapper.dita.DitaProject
+import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.Topic
+import uk.ac.ox.softeng.maurodatamapper.dita.enums.Toc
 import uk.ac.ox.softeng.maurodatamapper.dita.processor.DitaProcessor
 import uk.ac.ox.softeng.maurodatamapper.security.User
 
@@ -77,27 +77,20 @@ class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderS
 
     @Override
     ByteArrayOutputStream exportDataModels(User currentUser, List<DataModel> dataModels) throws ApiException {
-/*        log.info('Exporting DataModels to Excel')
-        workbook = loadWorkbookFromFilename(DATAMODELS_IMPORT_TEMPLATE_FILENAME) as XSSFWorkbook
-        loadDataModelsIntoWorkbook(dataModels).withCloseable { XSSFWorkbook workbook ->
-            if (!workbook) return null
-            new ByteArrayOutputStream().tap { ByteArrayOutputStream exportStream ->
-                workbook.write(exportStream)
-                log.info('DataModels exported')
-            }
+
+        Topic topic = Topic.build(id: "myId") {
+            title dataModels[0].label
+            shortdesc dataModels[0].description
         }
 
- */
+        DitaProject ditaProject = new DitaProject(
+            filename: dataModels[0].label,
+            title: dataModels[0].label
+        )
 
-        Topic topic = new Topic(id: "myId",
-                                title: new Title(stringContent: dataModels[0].label),
-                                shortDesc: new ShortDesc(stringContent: dataModels[0].description))
+        ditaProject.addTopic("", topic, Toc.YES)
 
-       // System.err.println(topic.validate())
-
-        //System.err.println(topic.outputAsString())
-
-        byte[] bytes = DitaProcessor.generatePDF(topic)
+        byte[] bytes = DitaProcessor.generatePdf(ditaProject)
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream(bytes.length)
         baos.writeBytes(bytes)
