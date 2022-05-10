@@ -31,13 +31,13 @@ import groovy.util.logging.Slf4j
 
 @Slf4j
 @CompileStatic
-class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderService {
+class DitaZipDataModelExporterProviderService extends DataModelExporterProviderService {
 
     DitaExporterService ditaExporterService
 
     @Override
     String getDisplayName() {
-        'DITA PDF Exporter'
+        'DITA Zip Exporter'
     }
 
     @Override
@@ -47,12 +47,12 @@ class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderS
 
     @Override
     String getFileType() {
-        'application/pdf'
+        'application/zip'
     }
 
     @Override
     String getFileExtension() {
-        'pdf'
+        'zip'
     }
 
     @Override
@@ -68,7 +68,7 @@ class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderS
     @Override
     ByteArrayOutputStream exportDataModel(User currentUser, DataModel dataModel) throws ApiException {
         DitaProject ditaProject = DataModelDitaBuilder.builder().buildDitaProject(dataModel)
-        ditaExporterService.generatePdf(ditaProject)
+        ditaExporterService.generateDitaMapZipToByteArrayOutputStream(ditaProject)
     }
 
     @Override

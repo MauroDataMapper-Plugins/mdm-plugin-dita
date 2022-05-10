@@ -19,13 +19,11 @@ package uk.ac.ox.softeng.maurodatamapper.plugins.dita.datamodel.provider.exporte
 
 import uk.ac.ox.softeng.maurodatamapper.api.exception.ApiException
 import uk.ac.ox.softeng.maurodatamapper.api.exception.ApiNotYetImplementedException
-import uk.ac.ox.softeng.maurodatamapper.core.facet.MetadataService
 import uk.ac.ox.softeng.maurodatamapper.datamodel.DataModel
-import uk.ac.ox.softeng.maurodatamapper.datamodel.item.DataClassService
-import uk.ac.ox.softeng.maurodatamapper.datamodel.item.DataElementService
 import uk.ac.ox.softeng.maurodatamapper.datamodel.provider.exporter.DataModelExporterProviderService
-import uk.ac.ox.softeng.maurodatamapper.dita.processor.DitaProcessor
+import uk.ac.ox.softeng.maurodatamapper.dita.DitaProject
 import uk.ac.ox.softeng.maurodatamapper.plugins.DataModelDitaBuilder
+import uk.ac.ox.softeng.maurodatamapper.plugins.dita.exporter.DitaExporterService
 import uk.ac.ox.softeng.maurodatamapper.security.User
 
 import groovy.transform.CompileStatic
@@ -35,9 +33,7 @@ import groovy.util.logging.Slf4j
 @CompileStatic
 class DitaDocxDataModelExporterProviderService extends DataModelExporterProviderService {
 
-    DataClassService dataClassService
-    DataElementService dataElementService
-    MetadataService metadataService
+    DitaExporterService ditaExporterService
 
     @Override
     String getDisplayName() {
@@ -71,11 +67,8 @@ class DitaDocxDataModelExporterProviderService extends DataModelExporterProvider
 
     @Override
     ByteArrayOutputStream exportDataModel(User currentUser, DataModel dataModel) throws ApiException {
-        byte[] bytes = DitaProcessor.generateDocx(DataModelDitaBuilder.builder().buildDitaProject(dataModel))
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream(bytes.length)
-        baos.writeBytes(bytes)
-        return baos
+        DitaProject ditaProject = DataModelDitaBuilder.builder().buildDitaProject(dataModel)
+        ditaExporterService.generateDocx(ditaProject)
     }
 
     @Override
