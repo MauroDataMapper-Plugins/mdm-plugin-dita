@@ -108,7 +108,8 @@ grails:
     cors:
         enabled: true
         # The following are the defaults
-        allowedOrigins: [ '*' ]
+        # allowedOrigins: ['*'] # Cannot use allowedOrigins with *, they have to be clearly stated origins
+        allowedOriginPatterns: [ '*' ]
         allowedMethods: [ 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD' ]
         allowedHeaders: [ 'origin', 'content-type', 'accept', 'authorization', 'pragma', 'cache-control' ]
         #exposedHeaders: null
@@ -144,9 +145,13 @@ dataSource:
 environments:
     test:
         spring.flyway.enabled: false
+        maurodatamapper:
+            authority:
+                name: 'Test Authority'
+                url: 'http://localhost'
         database:
-            name: 'mpt'
-            creation: 'CREATE SCHEMA IF NOT EXISTS CORE'
+            name: 'mpd'
+            creation: 'CREATE SCHEMA IF NOT EXISTS CORE\;CREATE SCHEMA IF NOT EXISTS DATAMODEL'
         dataSource:
             driverClassName: org.h2.Driver
             dialect: org.hibernate.dialect.H2Dialect

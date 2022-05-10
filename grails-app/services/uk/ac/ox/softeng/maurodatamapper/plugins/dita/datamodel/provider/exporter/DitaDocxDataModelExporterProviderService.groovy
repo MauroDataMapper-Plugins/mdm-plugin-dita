@@ -33,7 +33,7 @@ import groovy.util.logging.Slf4j
 
 @Slf4j
 @CompileStatic
-class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderService {
+class DitaDocxDataModelExporterProviderService extends DataModelExporterProviderService {
 
     DataClassService dataClassService
     DataElementService dataElementService
@@ -41,7 +41,7 @@ class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderS
 
     @Override
     String getDisplayName() {
-        'DITA PDF Exporter'
+        'DITA MS Word Exporter'
     }
 
     @Override
@@ -51,12 +51,12 @@ class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderS
 
     @Override
     String getFileType() {
-        'application/pdf'
+        'application/docx'
     }
 
     @Override
     String getFileExtension() {
-        'pdf'
+        'docx'
     }
 
     @Override
@@ -71,7 +71,7 @@ class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderS
 
     @Override
     ByteArrayOutputStream exportDataModel(User currentUser, DataModel dataModel) throws ApiException {
-        byte[] bytes = DitaProcessor.generatePdf(DataModelDitaBuilder.builder().buildDitaProject(dataModel))
+        byte[] bytes = DitaProcessor.generateDocx(DataModelDitaBuilder.builder().buildDitaProject(dataModel))
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream(bytes.length)
         baos.writeBytes(bytes)
