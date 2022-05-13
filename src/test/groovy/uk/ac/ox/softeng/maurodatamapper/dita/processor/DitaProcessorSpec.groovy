@@ -51,7 +51,7 @@ class DitaProcessorSpec extends Specification {
 
         ditaProject.addTopic("", testTopic, Toc.YES)
 
-        byte[] fileContents = DitaProcessor.generatePdf(ditaProject)
+        byte[] fileContents = new DitaProcessor().generatePdf(ditaProject)
         Files.write(Paths.get('build/tmp/pdftest.pdf'), fileContents)
 
 

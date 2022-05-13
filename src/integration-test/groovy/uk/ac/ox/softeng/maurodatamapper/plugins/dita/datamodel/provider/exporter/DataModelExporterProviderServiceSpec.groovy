@@ -42,13 +42,13 @@ abstract class DataModelExporterProviderServiceSpec<E extends DataModelExporterP
         BootstrapModels.buildAndSaveComplexDataModel(messageSource, folder, testAuthority)
     }
 
-    void exportModel(UUID dataModelId, String filenameToSaveAs, int expectedBytesSize) {
-        ByteArrayOutputStream byteArrayOutputStream = exporterService.exportDomain(admin, dataModelId)
+    void exportModel(UUID dataModelId, String filenameToSaveAs, int expectedBytesSize, Map<String, Object> params = [:]) {
+        ByteArrayOutputStream byteArrayOutputStream = exporterService.exportDomain(admin, dataModelId, params)
         checkAndWriteToFile(byteArrayOutputStream, filenameToSaveAs, expectedBytesSize)
     }
 
-    void exportModels(List<UUID> dataModelIds, String filenameToSaveAs, int expectedBytesSize) {
-        ByteArrayOutputStream byteArrayOutputStream = exporterService.exportDomains(admin, dataModelIds)
+    void exportModels(List<UUID> dataModelIds, String filenameToSaveAs, int expectedBytesSize, Map<String, Object> params = [:]) {
+        ByteArrayOutputStream byteArrayOutputStream = exporterService.exportDomains(admin, dataModelIds, params)
         checkAndWriteToFile(byteArrayOutputStream, filenameToSaveAs, expectedBytesSize)
     }
 
