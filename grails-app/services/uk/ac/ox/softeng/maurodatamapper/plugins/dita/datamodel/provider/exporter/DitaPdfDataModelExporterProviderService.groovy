@@ -17,32 +17,17 @@
  */
 package uk.ac.ox.softeng.maurodatamapper.plugins.dita.datamodel.provider.exporter
 
-import uk.ac.ox.softeng.maurodatamapper.api.exception.ApiException
-import uk.ac.ox.softeng.maurodatamapper.api.exception.ApiNotYetImplementedException
-import uk.ac.ox.softeng.maurodatamapper.datamodel.DataModel
-import uk.ac.ox.softeng.maurodatamapper.datamodel.provider.exporter.DataModelExporterProviderService
-import uk.ac.ox.softeng.maurodatamapper.dita.DitaProject
-import uk.ac.ox.softeng.maurodatamapper.plugins.DataModelDitaBuilder
-import uk.ac.ox.softeng.maurodatamapper.plugins.dita.exporter.DitaExporterService
-import uk.ac.ox.softeng.maurodatamapper.security.User
 
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 
 @Slf4j
 @CompileStatic
-class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderService {
-
-    DitaExporterService ditaExporterService
+class DitaPdfDataModelExporterProviderService extends DitaTranstypeDataModelExporterProviderService {
 
     @Override
     String getDisplayName() {
         'DITA PDF Exporter'
-    }
-
-    @Override
-    String getVersion() {
-        getClass().getPackage().getSpecificationVersion() ?: 'SNAPSHOT'
     }
 
     @Override
@@ -55,26 +40,7 @@ class DitaPdfDataModelExporterProviderService extends DataModelExporterProviderS
         'pdf'
     }
 
-    @Override
-    Boolean canExportMultipleDomains() {
-        false
+    String getTranstype(Map<String, Object> parameters) {
+        'pdf'
     }
-
-    @Override
-    String getNamespace() {
-        'uk.ac.ox.softeng.maurodatamapper.plugins.dita.datamodel'
-    }
-
-    @Override
-    ByteArrayOutputStream exportDataModel(User currentUser, DataModel dataModel) throws ApiException {
-        DitaProject ditaProject = DataModelDitaBuilder.builder().buildDitaProject(dataModel)
-        ditaExporterService.generatePdf(ditaProject)
-    }
-
-    @Override
-    ByteArrayOutputStream exportDataModels(User currentUser, List<DataModel> dataModels) throws ApiException {
-        throw new ApiNotYetImplementedException('DPES', 'exportDataModels')
-    }
-
-
 }

@@ -66,13 +66,13 @@ class DitaZipDataModelExporterProviderService extends DataModelExporterProviderS
     }
 
     @Override
-    ByteArrayOutputStream exportDataModel(User currentUser, DataModel dataModel) throws ApiException {
+    ByteArrayOutputStream exportDataModel(User currentUser, DataModel dataModel, Map<String, Object> parameters) throws ApiException {
         DitaProject ditaProject = DataModelDitaBuilder.builder().buildDitaProject(dataModel)
         ditaExporterService.generateDitaMapZipToByteArrayOutputStream(ditaProject)
     }
 
     @Override
-    ByteArrayOutputStream exportDataModels(User currentUser, List<DataModel> dataModels) throws ApiException {
+    ByteArrayOutputStream exportDataModels(User currentUser, List<DataModel> dataModels, Map<String, Object> parameters) throws ApiException {
         throw new ApiNotYetImplementedException('DPES', 'exportDataModels')
     }
 
