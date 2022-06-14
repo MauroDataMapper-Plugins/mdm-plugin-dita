@@ -25,14 +25,16 @@ import groovy.util.logging.Slf4j
 @CompileStatic
 class DitaPdfDataModelExporterProviderService extends DitaTranstypeDataModelExporterProviderService {
 
+    public static final CONTENT_TYPE = 'application/pdf'
+
     @Override
     String getDisplayName() {
         'DITA PDF Exporter'
     }
 
     @Override
-    String getFileType() {
-        'application/pdf'
+    String getContentType() {
+        CONTENT_TYPE
     }
 
     @Override

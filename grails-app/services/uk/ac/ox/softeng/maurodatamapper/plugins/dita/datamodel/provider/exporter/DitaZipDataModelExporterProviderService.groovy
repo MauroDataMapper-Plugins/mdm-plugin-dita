@@ -33,6 +33,8 @@ import groovy.util.logging.Slf4j
 @CompileStatic
 class DitaZipDataModelExporterProviderService extends DataModelExporterProviderService {
 
+    public static final CONTENT_TYPE = 'application/zip'
+
     DitaExporterService ditaExporterService
 
     @Override
@@ -46,8 +48,8 @@ class DitaZipDataModelExporterProviderService extends DataModelExporterProviderS
     }
 
     @Override
-    String getFileType() {
-        'application/zip'
+    String getContentType() {
+        CONTENT_TYPE
     }
 
     @Override

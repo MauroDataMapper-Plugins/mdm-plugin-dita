@@ -35,6 +35,8 @@ import org.dita.dost.util.Configuration
 @CompileStatic
 class DitaTranstypeDataModelExporterProviderService extends DataModelExporterProviderService {
 
+    public static final CONTENT_TYPE = 'application/octet-stream'
+
     DitaExporterService ditaExporterService
 
     @Override
@@ -48,8 +50,8 @@ class DitaTranstypeDataModelExporterProviderService extends DataModelExporterPro
     }
 
     @Override
-    String getFileType() {
-        'application/octet-stream'
+    String getContentType() {
+        CONTENT_TYPE
     }
 
     @Override

@@ -25,14 +25,16 @@ import groovy.util.logging.Slf4j
 @CompileStatic
 class DitaDocxDataModelExporterProviderService extends DitaTranstypeDataModelExporterProviderService {
 
+    public static final CONTENT_TYPE = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+
     @Override
     String getDisplayName() {
         'DITA MS Word Exporter'
     }
 
     @Override
-    String getFileType() {
-        'application/docx'
+    String getContentType() {
+        CONTENT_TYPE
     }
 
     @Override
