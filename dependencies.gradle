@@ -4,6 +4,14 @@ dependencies {
         exclude group: 'com.google.guava', module: 'guava'
     }
 
+    // For chart images
+    implementation 'org.jfree:jfreechart:1.5.2'
+    implementation 'org.jfree:org.jfree.svg:5.0.5'
+
+    // For Markdown parsing
+    implementation 'com.vladsch.flexmark:flexmark-all:0.64.0'
+    implementation group: 'org.dita-ot', name: 'dost', version: '3.7.1'
+
     testImplementation group: 'uk.ac.ox.softeng.maurodatamapper', name: 'mdm-testing-framework', version: mdmCoreVersion
 
     implementation group: 'uk.ac.ox.softeng.maurodatamapper', name: 'dita-dsl', version: '1.0.0-SNAPSHOT'
