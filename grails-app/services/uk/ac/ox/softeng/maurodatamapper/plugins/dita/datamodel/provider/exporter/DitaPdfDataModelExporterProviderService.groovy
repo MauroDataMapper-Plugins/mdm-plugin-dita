@@ -29,7 +29,7 @@ class DitaPdfDataModelExporterProviderService extends DitaTranstypeDataModelExpo
 
     @Override
     String getDisplayName() {
-        'DITA PDF Exporter'
+        'PDF Exporter via DITA'
     }
 
     @Override

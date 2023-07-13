@@ -13,33 +13,30 @@ import uk.ac.ox.softeng.maurodatamapper.dita.DitaProject
 import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.Body
 import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.Section
 import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.Topic
+import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.TopicRef
 import uk.ac.ox.softeng.maurodatamapper.dita.enums.Toc
+import uk.ac.ox.softeng.maurodatamapper.dita.helpers.IdHelper
 
 /**
  * @since 10/05/2022
  */
 class DataModelDitaBuilder {
 
-    static DataModelDitaBuilder builder() {
-        new DataModelDitaBuilder()
-    }
-
-    DitaProject buildDitaProject(DataModel dataModel) {
-        new DitaProject(
-            filename: dataModel.label,
-            title: dataModel.label
+    static DitaProject buildDitaProject(DataModel dataModel) {
+        new DitaProject(dataModel.label, dataModel.label
         ).tap {
-            addTopic("", Topic.build(id: "datamodel") {
+            registerTopic("", Topic.build(id: "datamodel") {
                 title dataModel.label
                 shortdesc dataModel.description
                 topic(buildDataTypesTopic(dataModel))
                 topic(buildDataClassTopic(dataModel))
                 body(buildCatalogueItemBit(dataModel))
-            }, Toc.YES)
+            })
+            mainMap.topicRef(new TopicRef(keyRef: "datamodel", toc: Toc.YES))
         }
     }
 
-    Topic buildDataTypesTopic(DataModel dataModel) {
+    static Topic buildDataTypesTopic(DataModel dataModel) {
         Topic.build(id: 'datatypes') {
             title 'Data Types'
             shortdesc 'All DataTypes used by this DataModel'
@@ -53,7 +50,7 @@ class DataModelDitaBuilder {
         }
     }
 
-    Section buildDataTypeSection(String name, Collection<? extends DataType> dataTypes) {
+    static Section buildDataTypeSection(String name, Collection<? extends DataType> dataTypes) {
         Section.build {
             title name
             simpletable {
@@ -90,7 +87,7 @@ class DataModelDitaBuilder {
         }
     }
 
-    Topic buildDataClassTopic(DataModel dataModel) {
+    static Topic buildDataClassTopic(DataModel dataModel) {
         Topic.build(id: 'dataclasses') {
             title 'DataClasses'
             dataModel.childDataClasses.eachWithIndex {dc, i ->
@@ -99,7 +96,7 @@ class DataModelDitaBuilder {
         }
     }
 
-    Topic buildDataClassTopic(DataClass dc, String dcId) {
+    static Topic buildDataClassTopic(DataClass dc, String dcId) {
         Topic.build(id: "${dcId}.dataclasses") {
             title 'DataClasses'
             if (dc.dataClasses) {
@@ -110,7 +107,7 @@ class DataModelDitaBuilder {
         }
     }
 
-    Topic buildDataClassBit(DataClass dc, String idPrefix, int i) {
+    static Topic buildDataClassBit(DataClass dc, String idPrefix, int i) {
         String dcId = "${idPrefix}dc[${i}]"
         return Topic.build {
             id dcId
@@ -154,7 +151,7 @@ class DataModelDitaBuilder {
         }
     }
 
-    Body buildCatalogueItemBit(CatalogueItem catalogueItem) {
+    static Body buildCatalogueItemBit(CatalogueItem catalogueItem) {
         Body.build {
             if (catalogueItem.metadata) {
                 section buildMetadataSection(catalogueItem.metadata)
@@ -165,7 +162,7 @@ class DataModelDitaBuilder {
         }
     }
 
-    Section buildMetadataSection(Collection<Metadata> metadata) {
+    static Section buildMetadataSection(Collection<Metadata> metadata) {
         Section.build {
             title 'Metadata'
             simpletable {
@@ -185,7 +182,7 @@ class DataModelDitaBuilder {
         }
     }
 
-    Section buildRulesSection(Collection<Rule> rules) {
+    static Section buildRulesSection(Collection<Rule> rules) {
         Section.build {
             title 'Rules'
             rules.each {rule ->

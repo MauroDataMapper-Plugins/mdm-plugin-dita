@@ -5,20 +5,9 @@ import com.vladsch.flexmark.parser.Parser
 import com.vladsch.flexmark.util.ast.Node
 import com.vladsch.flexmark.util.data.MutableDataSet
 import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.Div
-import uk.ac.ox.softeng.maurodatamapper.dita.html.HtmlHelper
+import uk.ac.ox.softeng.maurodatamapper.dita.helpers.HtmlHelper
 
 class DitaHelper {
-
-    static final List<Character> disallowedCharacters = [' ','/']
-
-    static String createDitaId(String input) {
-
-        String response = input
-        disallowedCharacters.each {
-            response = response.replace(it, '_')
-        }
-        return response
-    }
 
 
     static String convertMarkdownToHtml(String markdown) {
@@ -52,7 +41,7 @@ class DitaHelper {
     }
 
     static boolean containsHtml(String value) {
-        return value.find(/<\/?[a-z][\s\S]*>/)
+        return value != null && value.find(/<\/?[a-z][\s\S]*>/)
     }
 
 }

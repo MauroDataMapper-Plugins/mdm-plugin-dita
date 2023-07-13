@@ -19,6 +19,7 @@ package uk.ac.ox.softeng.maurodatamapper.dita.processor
 
 import uk.ac.ox.softeng.maurodatamapper.dita.DitaProject
 import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.Topic
+import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.TopicRef
 import uk.ac.ox.softeng.maurodatamapper.dita.enums.Toc
 import uk.ac.ox.softeng.maurodatamapper.dita.processor.DitaProcessor
 
@@ -44,12 +45,10 @@ class DitaProcessorSpec extends Specification {
             }
         }
 
-        DitaProject ditaProject = new DitaProject(
-            filename: "myFirstDitaProject",
-            title: "My First DITA Project"
-        )
+        DitaProject ditaProject = new DitaProject("myFirstDitaProject", "My First DITA Project")
 
-        ditaProject.addTopic("", testTopic, Toc.YES)
+        ditaProject.registerTopic("", testTopic)
+        ditaProject.mainMap.topicRef(new TopicRef(keyRef: "myFirstTopic", toc: Toc.YES))
 
         byte[] fileContents = new DitaProcessor().generatePdf(ditaProject)
         Files.write(Paths.get('build/tmp/pdftest.pdf'), fileContents)
@@ -57,7 +56,7 @@ class DitaProcessorSpec extends Specification {
 
         then:
         noExceptionThrown()
-        fileContents.size() == 7771 // The number of bytes of the generated pdf file
+        fileContents.size() == 7759 // The number of bytes of the generated pdf file
 
     }
 }

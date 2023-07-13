@@ -21,16 +21,16 @@ import uk.ac.ox.softeng.maurodatamapper.api.exception.ApiException
 import uk.ac.ox.softeng.maurodatamapper.api.exception.ApiNotYetImplementedException
 import uk.ac.ox.softeng.maurodatamapper.datamodel.DataModel
 import uk.ac.ox.softeng.maurodatamapper.datamodel.provider.exporter.DataModelExporterProviderService
-import uk.ac.ox.softeng.maurodatamapper.dita.DitaProject3
-import uk.ac.ox.softeng.maurodatamapper.dita.elements.langref.base.TopicRef
-import uk.ac.ox.softeng.maurodatamapper.dita.enums.Toc
+import uk.ac.ox.softeng.maurodatamapper.dita.DitaProject
+import uk.ac.ox.softeng.maurodatamapper.dita.helpers.IdHelper
 import uk.ac.ox.softeng.maurodatamapper.plugins.dita.DataClassDitaBuilder
 import uk.ac.ox.softeng.maurodatamapper.plugins.dita.exporter.DitaExporterService
-import uk.ac.ox.softeng.maurodatamapper.profile.ProfileService
 import uk.ac.ox.softeng.maurodatamapper.security.User
 
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
+
+import java.nio.file.Files
 
 
 @Slf4j
@@ -40,7 +40,6 @@ class DitaZipDataModelExporterProviderService extends DataModelExporterProviderS
     public static final CONTENT_TYPE = 'application/zip'
 
     DitaExporterService ditaExporterService
-    ProfileService profileService
 
     @Override
     String getDisplayName() {
@@ -76,24 +75,26 @@ class DitaZipDataModelExporterProviderService extends DataModelExporterProviderS
     ByteArrayOutputStream exportDataModel(User currentUser, DataModel dataModel, Map<String, Object> parameters) throws ApiException {
 
 
-        DitaProject3 ditaProject3 = new DitaProject3(
+        DitaProject ditaProject = new DitaProject(
                 dataModel.label, "output"
         )
         dataModel.childDataClasses.each {dataClass ->
-            ditaProject3.mainMap.mapRef(DataClassDitaBuilder.createDataClassMap(dataClass, ditaProject3))
+            ditaProject.mainMap.mapRef(DataClassDitaBuilder.createDataClassMap(dataClass, ditaProject))
         }
 
-        File mainDir = new File("/Users/james/test/DitaTest3")
-        if(mainDir.exists()) {
-            mainDir.deleteDir()
-        }
 
-        ditaProject3.writeToDirectory('/Users/james/test/DitaTest3')
 
-        return null
+        //File mainDir = Files.createTempDirectory("ditaGeneration").toFile()
+        //if(mainDir.exists()) {
+       //     mainDir.deleteDir()
+        //}
 
-        //DitaProject ditaProject = DataModelDitaBuilder.builder().buildDitaProject(dataModel)
-        //ditaExporterService.generateDitaMapZipToByteArrayOutputStream(ditaProject)
+        //ditaProject.writeToDirectory(mainDir.path)
+
+        //return null
+
+    //        DitaProject ditaProject = DataModelDitaBuilder.builder().buildDitaProject(dataModel)
+        ditaExporterService.generateDitaMapZipToByteArrayOutputStream(ditaProject)
     }
 
     @Override

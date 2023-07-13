@@ -29,7 +29,7 @@ class DitaDocxDataModelExporterProviderService extends DitaTranstypeDataModelExp
 
     @Override
     String getDisplayName() {
-        'DITA MS Word Exporter'
+        'MS Word Exporter via DITA'
     }
 
     @Override

@@ -25,7 +25,7 @@ class DitaExporterService {
     }
 
     ByteArrayOutputStream generateDocx(DitaProject ditaProject) {
-        toByteArrayOutputStream ditaProcessor.generatePdf(ditaProject)
+        toByteArrayOutputStream ditaProcessor.generateDocx(ditaProject)
     }
 
     ByteArrayOutputStream generateDitaMapZipToByteArrayOutputStream(DitaProject ditaProject) {

@@ -82,7 +82,7 @@ class DitaTranstypeDataModelExporterProviderService extends DataModelExporterPro
             throw new ApiBadRequestException('DTEPS', "Transtype $transtype not supported")
         }
 
-        DitaProject ditaProject = DataModelDitaBuilder.builder().buildDitaProject(dataModel)
+        DitaProject ditaProject = DataModelDitaBuilder.buildDitaProject(dataModel)
         ditaExporterService.generateTransType(ditaProject, transtype)
     }
 
