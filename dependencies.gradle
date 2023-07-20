@@ -10,7 +10,7 @@ dependencies {
 
     // For Markdown parsing
     implementation 'com.vladsch.flexmark:flexmark-all:0.64.0'
-    implementation group: 'org.dita-ot', name: 'dost', version: '3.7.1'
+    implementation group: 'org.dita-ot', name: 'dost', version: '4.1.1'
 
     testImplementation group: 'uk.ac.ox.softeng.maurodatamapper', name: 'mdm-testing-framework', version: mdmCoreVersion
 
