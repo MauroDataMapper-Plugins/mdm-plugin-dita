@@ -6,7 +6,7 @@ dependencies {
 
     // For chart images
     implementation 'org.jfree:jfreechart:1.5.2'
-    implementation 'org.jfree:org.jfree.svg:5.0.5'
+    implementation 'org.jfree:org.jfree.svg:5.0.6'
 
     // For Markdown parsing
     implementation 'com.vladsch.flexmark:flexmark-all:0.64.0'
