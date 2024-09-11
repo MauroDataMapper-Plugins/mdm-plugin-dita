@@ -51,7 +51,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
+      uses: gradle/actions/setup-gradle@v4
       with:
         cache-disabled: true
         build-scan-publish: true
@@ -83,21 +83,21 @@ jobs:
         reporter: java-junit
         list-tests: 'failed'
 
-#    - name: Parallel Integration Tests
-#      run: |
-#        ./gradlew -Dgradle.integrationTest=true integrationTest
+    - name: Parallel Integration Tests
+      run: |
+        ./gradlew -Dgradle.integrationTest=true integrationTest
 
-#    - name: Parallel Integration Test Report
-#      uses: dorny/test-reporter@v1
-#      if: success() || failure()
-#      with:
-#        name: Parallel Integration Test Results
-#        path: '**/build/test-results/parallelIntegrationTest/*.xml'
-#        reporter: java-junit
-#        list-tests: 'failed'
+    - name: Parallel Integration Test Report
+      uses: dorny/test-reporter@v1
+      if: success() || failure()
+      with:
+        name: Parallel Integration Test Results
+        path: '**/build/test-results/parallelIntegrationTest/*.xml'
+        reporter: java-junit
+        list-tests: 'failed'
 
     - name: MegaLinter
-      uses: oxsecurity/megalinter/flavors/ci_light@v7
+      uses: oxsecurity/megalinter/flavors/ci_light@v8
       env:
         # All available variables are described in documentation
         # https://megalinter.io/configuration/
