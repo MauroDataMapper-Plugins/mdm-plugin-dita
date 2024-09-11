@@ -83,16 +83,16 @@ jobs:
         reporter: java-junit
         list-tests: 'failed'
 
-    - name: Parallel Integration Tests
+    - name: Integration Tests
       run: |
         ./gradlew -Dgradle.integrationTest=true integrationTest
 
-    - name: Parallel Integration Test Report
+    - name: Integration Test Report
       uses: dorny/test-reporter@v1
       if: success() || failure()
       with:
         name: Parallel Integration Test Results
-        path: '**/build/test-results/parallelIntegrationTest/*.xml'
+        path: '**/build/test-results/integrationTest/*.xml'
         reporter: java-junit
         list-tests: 'failed'
 
