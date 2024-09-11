@@ -50,7 +50,7 @@ class DataElementDitaBuilder {
                         }
                 )
             }
-            if(dataElement.summaryMetadata[0]
+            if(dataElement.summaryMetadata && dataElement.summaryMetadata[0]
                     && dataElement.summaryMetadata[0].summaryMetadataReports) {
 
                 // We'll use the Jackson library because it preserves ordering on keys
